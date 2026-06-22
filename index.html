@@ -126,41 +126,77 @@ placeholder="yutaka_nakamura"
 
 <script>
 
-function search(){
+async function search(){
 
     const tag =
 
-        document.getElementById("search")
+    document.getElementById("search")
 
-        .value
-
-        .trim();
+    .value.trim();
 
     if(!tag) return;
 
-    document.getElementById("results").innerHTML =
+    const results =
 
-    `
+    document.getElementById("results");
 
-    <div class="item">
+    results.innerHTML = "<p>検索中...</p>";
 
-      <h2>${tag}</h2>
+    try{
 
-      <p>
+        const res = await fetch(
 
-        Sakugabooruで検索
+            "https://www.sakugabooru.com/post.json?tags="
 
-      </p>
+            + encodeURIComponent(tag)
 
-      <a href="https://www.sakugabooru.com/post?tags=${encodeURIComponent(tag)}" target="_blank">
+        );
 
-        結果を見る
+        const data = await res.json();
 
-      </a>
+        if(!data.length){
 
-    </div>
+            results.innerHTML =
 
-    `;
+            "<p>結果なし</p>";
+
+            return;
+
+        }
+
+        results.innerHTML = "";
+
+        data.slice(0,20).forEach(post=>{
+
+            results.innerHTML += `
+
+            <div class="item">
+
+                <img src="${post.preview_url}">
+
+                <p>Score: ${post.score}</p>
+
+                <a href="https://www.sakugabooru.com/post/show/${post.id}" target="_blank">
+
+                    開く
+
+                </a>
+
+            </div>
+
+            `;
+
+        });
+
+    }catch(error){
+
+        results.innerHTML =
+
+        "<p>API取得失敗</p>";
+
+        console.error(error);
+
+    }
 
 }
 
