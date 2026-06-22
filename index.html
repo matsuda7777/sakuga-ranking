@@ -28,7 +28,7 @@ body{
 
 h1{
 
-    margin-top:60px;
+    margin-top:40px;
 
     font-size:60px;
 
@@ -54,15 +54,53 @@ button{
 
     margin-top:20px;
 
-    padding:15px 40px;
+    padding:20px 50px;
 
-    font-size:24px;
+    font-size:28px;
 
     border:none;
 
     border-radius:20px;
 
-    cursor:pointer;
+}
+
+.result{
+
+    margin-top:30px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+    padding:20px;
+
+}
+
+.card{
+
+    background:#111;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+}
+
+.card img{
+
+    width:100%;
+
+    display:block;
+
+}
+
+.card a{
+
+    color:white;
+
+    text-decoration:none;
 
 }
 
@@ -78,23 +116,19 @@ button{
 
 id="search"
 
-placeholder="yutaka_nakamura など入力"
-
-onkeydown="search(event)"
+placeholder="例: yutaka_nakamura"
 
 >
 
 <br>
 
-<button onclick="goSearch()">
+<button onclick="search()">検索</button>
 
-検索
-
-</button>
+<div id="result" class="result"></div>
 
 <script>
 
-function goSearch(){
+function search(){
 
     const tag =
 
@@ -104,33 +138,17 @@ function goSearch(){
 
     .trim();
 
-    if(!tag){
-
-        alert("タグを入力してください");
-
-        return;
-
-    }
+    if(!tag)return;
 
     window.open(
 
-        "https://www.sakugabooru.com/post?tags=" +
+      "https://www.sakugabooru.com/post?tags=" +
 
-        encodeURIComponent(tag),
+      encodeURIComponent(tag),
 
-        "_blank"
+      "_blank"
 
     );
-
-}
-
-function search(e){
-
-    if(e.key === "Enter"){
-
-        goSearch();
-
-    }
 
 }
 
