@@ -16,7 +16,7 @@ body{
 
     background:#000;
 
-    color:white;
+    color:#fff;
 
     font-family:sans-serif;
 
@@ -28,15 +28,15 @@ body{
 
 h1{
 
-    margin-top:40px;
+    font-size:70px;
 
-    font-size:60px;
+    margin-top:80px;
 
 }
 
 input{
 
-    width:80%;
+    width:85%;
 
     max-width:700px;
 
@@ -44,15 +44,15 @@ input{
 
     font-size:28px;
 
-    border-radius:30px;
-
     border:none;
+
+    border-radius:30px;
 
 }
 
 button{
 
-    margin-top:20px;
+    margin-top:30px;
 
     padding:20px 50px;
 
@@ -62,43 +62,41 @@ button{
 
     border-radius:20px;
 
-}
-
-.result{
-
-    margin-top:30px;
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-    gap:15px;
-
-    padding:20px;
+    cursor:pointer;
 
 }
 
-.card{
+#results{
+
+    width:90%;
+
+    margin:40px auto;
+
+}
+
+.item{
 
     background:#111;
 
-    border-radius:10px;
+    margin-bottom:20px;
 
-    overflow:hidden;
+    padding:20px;
+
+    border-radius:15px;
 
 }
 
-.card img{
+.item img{
 
     width:100%;
 
-    display:block;
+    border-radius:10px;
 
 }
 
-.card a{
+.item a{
 
-    color:white;
+    color:#66aaff;
 
     text-decoration:none;
 
@@ -116,7 +114,7 @@ button{
 
 id="search"
 
-placeholder="例: yutaka_nakamura"
+placeholder="yutaka_nakamura"
 
 >
 
@@ -124,7 +122,7 @@ placeholder="例: yutaka_nakamura"
 
 <button onclick="search()">検索</button>
 
-<div id="result" class="result"></div>
+<div id="results"></div>
 
 <script>
 
@@ -132,23 +130,37 @@ function search(){
 
     const tag =
 
-    document.getElementById("search")
+        document.getElementById("search")
 
-    .value
+        .value
 
-    .trim();
+        .trim();
 
-    if(!tag)return;
+    if(!tag) return;
 
-    window.open(
+    document.getElementById("results").innerHTML =
 
-      "https://www.sakugabooru.com/post?tags=" +
+    `
 
-      encodeURIComponent(tag),
+    <div class="item">
 
-      "_blank"
+      <h2>${tag}</h2>
 
-    );
+      <p>
+
+        Sakugabooruで検索
+
+      </p>
+
+      <a href="https://www.sakugabooru.com/post?tags=${encodeURIComponent(tag)}" target="_blank">
+
+        結果を見る
+
+      </a>
+
+    </div>
+
+    `;
 
 }
 
