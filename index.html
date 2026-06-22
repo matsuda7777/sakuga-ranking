@@ -6,9 +6,61 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Sakuga Ranking</title>
+
+<style>
+
+body{
+
+    margin:0;
+
+    padding:20px;
+
+    background:#111;
+
+    color:white;
+
+    font-family:sans-serif;
+
+}
+
+h1{
+
+    text-align:center;
+
+}
+
+#search{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:15px;
+
+    font-size:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+.result{
+
+    margin-top:20px;
+
+    background:#222;
+
+    padding:15px;
+
+    border-radius:12px;
+
+}
+
+</style>
 
 </head>
 
@@ -16,9 +68,11 @@
 
 <h1>Sakuga Ranking</h1>
 
-<p>サイト作成成功！</p>
+<input id="search"
 
-<input type="text" placeholder="アニメーター・作品・タグ検索">
+placeholder="アニメーター・作品・タグ検索">
+
+<div id="results"></div>
 
 </body>
 
